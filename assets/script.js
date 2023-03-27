@@ -27,6 +27,16 @@ const displayImg = (currentImg) => {
     banner.insertAdjacentHTML("afterbegin", `<img class="banner-img" src="./assets/images/slideshow/${slides[currentImg].image}" alt="Banner Print-it">`);
     banner.insertAdjacentHTML("beforeend", `<p>${slides[currentImg].tagLine}</p>`);
     imgBanner = document.querySelector("#banner img");
+
+    const dotElements = document.querySelectorAll('.dot');
+    let index = 0;
+    dotElements.forEach((dot, index) =>{
+        if(index === currentImg){
+            dot.classList.add('dot_selected')
+        }else {
+            dot.classList.remove('dot_selected');
+        }
+    })
 }
 displayImg(currentImg);
 
@@ -37,6 +47,7 @@ const displayDots = (nbrImg) => {
     }
 }
 displayDots(nbrImg);
+
 
 const btnCarouselLeft = document.getElementById('carouselLeft');
 const btnCarouselRight = document.getElementById('carouselRight');
@@ -51,7 +62,6 @@ btnCarouselLeft.addEventListener('click', () =>{
     if (currentImg < 0) {
         currentImg = nbrImg - 1;
     }
-    let prevImg = imgBanner;
     imgBanner = document.querySelector("#banner img");
     displayImg(currentImg);
     displayDots(nbrImg);
