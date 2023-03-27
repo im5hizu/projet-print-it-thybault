@@ -1,0 +1,60 @@
+const slides = [
+	{
+		"image":"slide1.jpg",
+		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
+	},
+	{
+		"image":"slide2.jpg",
+		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
+	},
+	{
+		"image":"slide3.jpg",
+		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
+	},
+	{
+		"image":"slide4.png",
+		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
+	}
+]
+
+const banner = document.getElementById('banner')
+let imgBanner = document.querySelector("#banner img");
+let currentImg = 0;
+const nbrImg = slides.length;
+
+const displayImg = (currentImg) => {
+    banner.innerHTML = "";
+    banner.insertAdjacentHTML("afterbegin", `<img class="banner-img" src="./assets/images/slideshow/${slides[currentImg].image}" alt="Banner Print-it">`);
+    banner.insertAdjacentHTML("beforeend", `<p>${slides[currentImg].tagLine}</p>`);
+    imgBanner = document.querySelector("#banner img");
+}
+displayImg(currentImg);
+
+const btnCarouselLeft = document.getElementById('carouselLeft');
+const btnCarouselRight = document.getElementById('carouselRight');
+
+const slideInRight = 'slide-in-right';
+const slideInLeft = 'slide-in-left';
+const slideOutRight = 'slide-out-right';
+const slideOutLeft = 'slide-out-left';
+
+btnCarouselLeft.addEventListener('click', () =>{
+    currentImg--;
+    if (currentImg < 0) {
+        currentImg = nbrImg - 1;
+    }
+    let prevImg = imgBanner;
+    imgBanner = document.querySelector("#banner img");
+    prevImg.classList.remove(slideOutLeft);
+    imgBanner.classList.add(slideOutLeft);
+    displayImg(currentImg);
+})
+
+
+btnCarouselRight.addEventListener('click', () =>{
+    currentImg++;
+    if (currentImg > nbrImg - 1) {
+        currentImg = 0;
+    }
+    displayImg(currentImg);
+})
