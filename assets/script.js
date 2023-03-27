@@ -23,12 +23,20 @@ let currentImg = 0;
 const nbrImg = slides.length;
 
 const displayImg = (currentImg) => {
-    banner.innerHTML = "";
+    banner.innerHTML = "<div class='dots'></div>";
     banner.insertAdjacentHTML("afterbegin", `<img class="banner-img" src="./assets/images/slideshow/${slides[currentImg].image}" alt="Banner Print-it">`);
     banner.insertAdjacentHTML("beforeend", `<p>${slides[currentImg].tagLine}</p>`);
     imgBanner = document.querySelector("#banner img");
 }
 displayImg(currentImg);
+
+const displayDots = (nbrImg) => {
+    const dotsElement = document.querySelector("#banner .dots");
+    for(let i=0; i<nbrImg; i++){
+        dotsElement.insertAdjacentHTML("afterbegin", '<div class="dot"></div>');
+    }
+}
+displayDots(nbrImg);
 
 const btnCarouselLeft = document.getElementById('carouselLeft');
 const btnCarouselRight = document.getElementById('carouselRight');
@@ -45,9 +53,8 @@ btnCarouselLeft.addEventListener('click', () =>{
     }
     let prevImg = imgBanner;
     imgBanner = document.querySelector("#banner img");
-    prevImg.classList.remove(slideOutLeft);
-    imgBanner.classList.add(slideOutLeft);
     displayImg(currentImg);
+    displayDots(nbrImg);
 })
 
 
@@ -57,4 +64,6 @@ btnCarouselRight.addEventListener('click', () =>{
         currentImg = 0;
     }
     displayImg(currentImg);
+    displayDots(nbrImg)
 })
+
