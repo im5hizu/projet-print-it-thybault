@@ -16,10 +16,10 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-
+// Selecteur bouton carousel
 const btnCarouselLeft = document.getElementById('carouselLeft');
 const btnCarouselRight = document.getElementById('carouselRight');
-
+// bullet points
 const displayDots = (nbrImg) => {
     const dotsElement = document.querySelector("#banner .dots");
     for(let i=0; i<nbrImg; i++){
@@ -60,7 +60,6 @@ btnCarouselLeft.addEventListener('click', () =>{
     if (currentImg < 0) {
         currentImg = nbrImg - 1;
     }
-    imgBanner = document.querySelector("#banner img");
     displayImg(currentImg);
 })
 
